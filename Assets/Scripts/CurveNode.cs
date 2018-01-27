@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EpilipticLineNode {
+public class CurveNode : MonoBehaviour{
     public Vector2 position;
     public float intervalKeyframe;
-    public float outTangent;
-    public float inTangent;
+    public Vector2 outTangent;
+    public Vector2 inTangent;
 
     //AG: Cubic Hermite Spline Interpolation
     //According to https://en.wikipedia.org/wiki/Cubic_Hermite_spline
-    public static float DetermineIntervalPositon(EpilipticLineNode lhs, EpilipticLineNode rhs, float currentInverval)
+    public static float DetermineIntervalPositon(CurveNode lhs, CurveNode rhs, float currentInverval)
     {
         float intervalLength = rhs.intervalKeyframe - lhs.intervalKeyframe;
-        float m0 = lhs.outTangent * intervalLength;
-        float m1 = rhs.inTangent * intervalLength;
+        float m0 = lhs.outTangent.normalized.y/lhs.outTangent.normalized.x * intervalLength;
+        float m1 = rhs.inTangent.normalized.y/rhs.inTangent.normalized.y * intervalLength;
 
         float interval = currentInverval;
         float interval2 = interval * interval;
