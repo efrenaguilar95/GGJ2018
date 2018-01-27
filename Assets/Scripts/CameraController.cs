@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
 	public float lookAheadReturnSpeed = 0.1f;
 	public float lookAheadMoveThreshold = 0.1f;
 	public float lookAboveFactor = 2;
+	public float cameraFloor = 0;
 
 	private float m_OffsetZ;
 	private Vector3 m_LastPlayerPosition;
@@ -45,6 +46,9 @@ public class CameraController : MonoBehaviour
 		float yMoveDelta = m_yCameraPos - player.transform.position.y;
 		if (playerIsGrounded || yMoveDelta > 0)
 			m_yCameraPos = player.transform.position.y;
+
+		if (m_yCameraPos < cameraFloor)
+			m_yCameraPos = cameraFloor;
 
 		m_LookAbovePos = lookAheadFactor * Vector3.up;
 
