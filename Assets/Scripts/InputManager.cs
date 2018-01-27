@@ -5,12 +5,12 @@ using UnityStandardAssets.CrossPlatformInput;
 [RequireComponent(typeof (CharacterController))]
 public class InputManager : MonoBehaviour
 {
-	private CharacterController m_Character;
+	private PlayerController m_Character;
 	private bool m_Jump;
 
 	private void Awake()
 	{
-		m_Character = GetComponent<CharacterController>();
+		m_Character = GetComponent<PlayerController>();
 	}
 
 

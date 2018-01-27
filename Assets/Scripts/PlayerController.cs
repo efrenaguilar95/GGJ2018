@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 	[SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis
 	[SerializeField] private float m_JumpForce = 600f;                  // Amount of force added when the player jumps
-	[Range(0, 1)] [SerializeField] private float m_CarrySpeed = .5f;   // Amount of maxSpeed applied to carrying movement (1 = 100%)
+	[Range(0, 1)] [SerializeField] private float m_CarrySpeed = .5f;    // Amount of maxSpeed applied to carrying movement (1 = 100%)
 	[SerializeField] private bool m_AirControl = true;                  // Whether or not a player can steer while jumping
 	[SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+	[SerializeField] private bool m_Carrying;            				// Whether or not the player is carrying a person
 
 	private Transform m_GroundCheck;    // A position marking where to check if the player is grounded
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded
 	private Transform m_CeilingCheck;   // A position marking where to check for ceilings
-	private bool m_Carrying;            // Whether or not the player is carrying a person
 	private bool m_CarryToggle;         // Restricts picking up and placing down with the same keypress
 	private Animator m_Anim;            // Reference to the player's animator component
 	private Rigidbody2D m_Rigidbody2D;  // Reference to the player's rigidbody2d component

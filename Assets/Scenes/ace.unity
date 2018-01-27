@@ -314,13 +314,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf13e1f70bc446428d9d917cb5666d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1868022687}
-  smoothing: 0.3
-  lookAheadFactor: 3
-  lookAheadReturnSpeed: 0
-  lookAheadMoveThreshold: 0.1
-  lookAboveFactor: 2
-  cameraFloor: -1
+  m_player: {fileID: 1868022687}
+  m_smoothing: 0.3
+  m_lookAheadFactor: 3
+  m_lookAheadReturnSpeed: 0
+  m_lookAheadMoveThreshold: 0.1
+  m_lookAboveFactor: 2
+  m_cameraFloor: -1
 --- !u!4 &483738129 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 00a40ece4744e5245a0d8f39111119e5, type: 2}
