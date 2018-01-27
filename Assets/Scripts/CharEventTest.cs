@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharEventTest : MonoBehaviour {
-	public GameObject dialogManager;
+	private GameObject dialogManager;
 	public TextAsset textFile;
+	Quaternion startRotation;
 	// Use this for initialization
 	void Start () {
 		dialogManager = gameObject.transform.Find ("Canvas/DialogueManager").gameObject;
@@ -14,6 +15,6 @@ public class CharEventTest : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Semicolon))
 			dialogManager.GetComponent<CharacterDialogue> ().ToggleBox (textFile.text);
-		
 	}
+
 }
