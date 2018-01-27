@@ -3,22 +3,25 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-	public Transform target;
-	public float damping = 1;
-	public float lookAheadFactor = 3;
-	public float lookAheadReturnSpeed = 0.5f;
+	public GameObject player;
+	public float smoothing = 0.3f;
+	public float lookAheadFactor = 2;
+	public float lookAheadReturnSpeed = 0.1f;
 	public float lookAheadMoveThreshold = 0.1f;
+	public float lookAboveFactor = 2;
 
 	private float m_OffsetZ;
-	private Vector3 m_LastTargetPosition;
+	private Vector3 m_LastPlayerPosition;
 	private Vector3 m_CurrentVelocity;
 	private Vector3 m_LookAheadPos;
+	private Vector3 m_LookAbovePos;
+	private float m_yCameraPos = 0;
 
 	// Use this for initialization
 	private void Start()
 	{
-		m_LastTargetPosition = target.position;
-		m_OffsetZ = (transform.position - target.position).z;
+		m_LastPlayerPosition = player.transform.position;
+		m_OffsetZ = (transform.position - player.transform.position).z;
 		transform.parent = null;
 	}
 
@@ -26,25 +29,32 @@ public class CameraController : MonoBehaviour
 	// Update is called once per frame
 	private void Update()
 	{
-		// only update lookahead pos if accelerating or changed direction
-		float xMoveDelta = (target.position - m_LastTargetPosition).x;
+		// update lookahead pos if accelerating or changed direction
+		float xMoveDelta = (player.transform.position - m_LastPlayerPosition).x;
+		bool updateLookAheadPlayer = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
 
-		bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
-
-		if (updateLookAheadTarget)
-		{
-			m_LookAheadPos = lookAheadFactor*Vector3.right*Mathf.Sign(xMoveDelta);
-		}
+		if (updateLookAheadPlayer)
+			m_LookAheadPos = lookAheadFactor * Vector3.right * Mathf.Sign(xMoveDelta);
 		else
-		{
-			m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime*lookAheadReturnSpeed);
-		}
+			m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
 
-		Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward*m_OffsetZ;
-		Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
+		// update lookabove pos if player is on ground
+		CharacterController characterControllerScript = player.GetComponent<CharacterController>();
+		bool playerIsGrounded = characterControllerScript.IsGrounded();
 
+		float yMoveDelta = m_yCameraPos - player.transform.position.y;
+		if (playerIsGrounded || yMoveDelta > 0)
+			m_yCameraPos = player.transform.position.y;
+
+		m_LookAbovePos = lookAheadFactor * Vector3.up;
+
+		// smooth camera movement
+		Vector3 cameraPos = new Vector3(player.transform.position.x + m_LookAheadPos.x, m_yCameraPos + m_LookAbovePos.y, player.transform.position.z);
+		Vector3 targetPos = cameraPos + Vector3.forward * m_OffsetZ;
+		Vector3 newPos = Vector3.SmoothDamp(transform.position, targetPos, ref m_CurrentVelocity, smoothing);
 		transform.position = newPos;
 
-		m_LastTargetPosition = target.position;
+		// update last player position
+		m_LastPlayerPosition = player.transform.position;
 	}
 }

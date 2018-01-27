@@ -98,6 +98,14 @@ public class CharacterController : MonoBehaviour
 	}
 
 
+	public bool IsGrounded()
+	{
+		if (m_Grounded != null)
+			return m_Grounded;
+		else
+			return false;
+	}
+
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
