@@ -5,11 +5,11 @@ public class CameraController : MonoBehaviour
 {
 	public GameObject player;
 	public float smoothing = 0.3f;
-	public float lookAheadFactor = 2;
-	public float lookAheadReturnSpeed = 0.1f;
+	public float lookAheadFactor = 3;
+	public float lookAheadReturnSpeed = 0f;
 	public float lookAheadMoveThreshold = 0.1f;
-	public float lookAboveFactor = 2;
-	public float cameraFloor = 0;
+	public float lookAboveFactor = 1;
+	public float cameraFloor = -1;
 
 	private float m_OffsetZ;
 	private Vector3 m_LastPlayerPosition;
@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
 		if (m_yCameraPos < cameraFloor)
 			m_yCameraPos = cameraFloor;
 
-		m_LookAbovePos = lookAheadFactor * Vector3.up;
+		m_LookAbovePos = lookAboveFactor * Vector3.up;
 
 		// smooth camera movement
 		Vector3 cameraPos = new Vector3(player.transform.position.x + m_LookAheadPos.x, m_yCameraPos + m_LookAbovePos.y, player.transform.position.z);
