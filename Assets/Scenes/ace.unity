@@ -320,6 +320,7 @@ MonoBehaviour:
   lookAheadReturnSpeed: 0.1
   lookAheadMoveThreshold: 0.3
   lookAboveFactor: 1
+  cameraFloor: 0
 --- !u!4 &483738129 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 00a40ece4744e5245a0d8f39111119e5, type: 2}
@@ -414,6 +415,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &995787820
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -8.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+      propertyPath: m_Size.x
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e6581e5cdaae7b945b4ce96ae66cc6d9, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &1230428255 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 00a40ece4744e5245a0d8f39111119e5, type: 2}
