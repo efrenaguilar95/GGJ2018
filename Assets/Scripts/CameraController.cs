@@ -5,11 +5,11 @@ public class CameraController : MonoBehaviour
 {
 	public GameObject player;
 	public float smoothing = 0.3f;
-	public float lookAheadFactor = 3;
+	public float lookAheadFactor = 3f;
 	public float lookAheadReturnSpeed = 0f;
 	public float lookAheadMoveThreshold = 0.1f;
-	public float lookAboveFactor = 1;
-	public float cameraFloor = -1;
+	public float lookAboveFactor = 2f;
+	public float cameraFloor = -1f;
 
 	private float m_OffsetZ;
 	private Vector3 m_LastPlayerPosition;

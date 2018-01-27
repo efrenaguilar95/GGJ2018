@@ -8,7 +8,6 @@ public class InputManager : MonoBehaviour
 	private CharacterController m_Character;
 	private bool m_Jump;
 
-
 	private void Awake()
 	{
 		m_Character = GetComponent<CharacterController>();
@@ -19,7 +18,7 @@ public class InputManager : MonoBehaviour
 	{
 		if (!m_Jump)
 		{
-			// Read the jump input in Update so button presses aren't missed.
+			// Read the jump input in Update so button presses aren't missed
 			m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
 		}
 	}
@@ -27,11 +26,12 @@ public class InputManager : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		// Read the inputs.
-		bool crouch = Input.GetKey(KeyCode.LeftControl);
+		// Read the inputs
+		bool pickup = Input.GetKey(KeyCode.S);
 		float h = CrossPlatformInputManager.GetAxis("Horizontal");
-		// Pass all parameters to the character control script.
-		m_Character.Move(h, crouch, m_Jump);
+
+		// Pass all parameters to the character control script
+		m_Character.Move(h, m_Jump, pickup);
 		m_Jump = false;
 	}
 }

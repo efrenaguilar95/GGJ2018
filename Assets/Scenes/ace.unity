@@ -518,6 +518,15 @@ Prefab:
       propertyPath: m_AirControl
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 24f514556b1e3a3459cb59534f35ef73, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bc0b9740a09396241876b06bfbae02e9, type: 2}
+    - target: {fileID: 114917531048181032, guid: 24f514556b1e3a3459cb59534f35ef73,
+        type: 2}
+      propertyPath: m_CarrySpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24f514556b1e3a3459cb59534f35ef73, type: 2}
   m_IsPrefabParent: 0
