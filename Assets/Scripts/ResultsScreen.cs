@@ -11,7 +11,7 @@ public class ResultsScreen : MonoBehaviour {
     public FinishLine finisher; //finish line checker
     public Text resultsText;
     public StarCounter stars;   //to check how many stars are given in this level depending on completion time
-    public Timer time;               //to get the time the level completed
+    public Timer time;          //to get the time the level completed
     
     private float transitionTimer;
     private Animator anim;
@@ -42,11 +42,20 @@ public class ResultsScreen : MonoBehaviour {
         resultsText.text = "You did it!\n";
 
         if (clock > stars.starGoal3)
+        {
+            anim.SetTrigger("3Star");
             starCount = 3;
+        }
         else if (clock > stars.starGoal2)
+        {
+            anim.SetTrigger("2Star");
             starCount = 2;
+        }
         else if (clock > stars.starGoal1)
+        {
+            anim.SetTrigger("1Star");
             starCount = 1;
+        }
 
         resultsText.text += "You earned " + starCount + " stars!";
     }
