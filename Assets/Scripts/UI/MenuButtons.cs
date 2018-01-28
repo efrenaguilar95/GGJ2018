@@ -59,6 +59,6 @@ public class MenuButtons : MonoBehaviour {
     public void VolumeSlideControl()
     {
         //??? = volumeSlider.value;
-        //masterAudioMixer.audioMixer.SetFloat("MasterVolume", value);
+        masterAudioMixer.audioMixer.SetFloat("MasterVolume", volumeSlider.value);
     }
 }
