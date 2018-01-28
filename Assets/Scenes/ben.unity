@@ -265,6 +265,16 @@ Prefab:
       propertyPath: starGoal3
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114746265401960720, guid: bf5244cf7f192984a8013e32a451229a,
+        type: 2}
+      propertyPath: spike
+      value: 
+      objectReference: {fileID: 2130372962}
+    - target: {fileID: 114797364844096680, guid: bf5244cf7f192984a8013e32a451229a,
+        type: 2}
+      propertyPath: finisher
+      value: 
+      objectReference: {fileID: 1066130253}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf5244cf7f192984a8013e32a451229a, type: 2}
   m_IsPrefabParent: 0
@@ -348,7 +358,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &349865723
 MonoBehaviour:
@@ -428,12 +438,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &690851764 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114207999932687152, guid: bf5244cf7f192984a8013e32a451229a,
-    type: 2}
-  m_PrefabInternal: {fileID: 263710998}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &897388433
 Prefab:
   m_ObjectHideFlags: 0
@@ -664,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f00f59d8147f1648bcdf3325f4e0467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryText: {fileID: 690851764}
+  victoryText: {fileID: 0}
 --- !u!61 &1066130254
 BoxCollider2D:
   m_ObjectHideFlags: 0
