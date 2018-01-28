@@ -575,9 +575,13 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294965503
   m_Carrying: 0
   m_CarryPos: {fileID: 4709174144141662}
+  m_HappyHead: {fileID: 21300000, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
+  m_NormalHead: {fileID: 21300000, guid: c47527d2604dc564386f78bac2bae28a, type: 3}
+  m_SadHead: {fileID: 21300000, guid: ac9eded57662747449caa3e23821cbc1, type: 3}
+  m_Happiness: 120
   helpToggleEvent:
     m_PersistentCalls:
       m_Calls: []
