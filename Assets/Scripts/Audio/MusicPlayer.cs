@@ -12,24 +12,29 @@ public class MusicPlayer : MonoBehaviour {
 
     public bool isWithFriend = false;
 
+    IEnumerator fadeInMethod;
+    IEnumerator fadeOutMethod;
+
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        float val;
-        playerSongGroup.audioMixer.GetFloat("FriendSongVol", out val);
-        Debug.Log(val);
         if(isWithFriend)
         {
-            StartCoroutine(fadeIn(playerSongGroup, fadeRate));
+            fadeInMethod = fadeIn(friendSongGroup, fadeRate);
+            if(fadeOutMethod != null)
+                StopCoroutine(fadeOutMethod);
+            StartCoroutine(fadeInMethod);
         }
         else
         {
-            StartCoroutine(fadeOut(playerSongGroup, fadeRate));
+            fadeOutMethod = fadeOut(friendSongGroup, fadeRate);
+            if(fadeInMethod != null)
+                StopCoroutine(fadeInMethod);
+            StartCoroutine(fadeOutMethod);
         }
 		
 	}
@@ -39,6 +44,7 @@ public class MusicPlayer : MonoBehaviour {
     {
         float currentAudioVolume;
         playerSongGroup.audioMixer.GetFloat("FriendSongVol", out currentAudioVolume);
+        Debug.Log(currentAudioVolume);
         while (currentAudioVolume <= 0)
         {
             playerSongGroup.audioMixer.GetFloat("FriendSongVol", out currentAudioVolume);
