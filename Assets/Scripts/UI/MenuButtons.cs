@@ -55,11 +55,6 @@ public class MenuButtons : MonoBehaviour {
 
     public void OnExitClick()
     {
-        if (Application.isEditor)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        }
-        else
             Application.Quit();
     }
 
