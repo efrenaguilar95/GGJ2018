@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private bool m_AirControl = true;                  // Whether or not a player can steer while jumping
 	[SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 	[SerializeField] private bool m_Carrying;            				// Whether or not the player is carrying a person
+	[SerializeField] private bool m_Electric;
 	public Transform m_CarryPos;
 	public Sprite m_HappyHead;
 	public Sprite m_NormalHead;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
 		m_Grounded = false;
 		m_Carrying = false;
 		m_CarryToggle = false;
+		m_Electric = false;
 		m_Happiness = 0;
 		m_Anim = GetComponentInChildren<Animator>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -159,10 +161,27 @@ public class PlayerController : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool jump, bool pickup)
+	private void AttemptTravel()
+	{
+		// test is on start node
+		if (true)
+		{
+			// travel through wire
+			m_Electric = !m_Electric;
+			Debug.Log("Attempted to Travel");
+			// change animation
+		}
+	}
+
+
+	public void Move(float move, bool jump, bool pickup, bool travel)
 	{
 		// attempt to pickup a person if s is pressed
 		AttemptPickup(pickup);
+
+		// attempt to travel through a wire if shift is pressed
+		if (travel)
+			AttemptTravel();
 		
 		// only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
@@ -210,6 +229,11 @@ public class PlayerController : MonoBehaviour
 	public bool IsCarrying()
 	{
 		return m_Carrying;
+	}
+
+	public bool IsElectric()
+	{
+		return m_Electric;
 	}
 
 	public void ChangeHappiness(int change)

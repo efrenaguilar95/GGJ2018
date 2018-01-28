@@ -28,10 +28,11 @@ public class InputManager : MonoBehaviour
 	{
 		// Read the inputs
 		bool pickup = Input.GetKey(KeyCode.S);
+		bool travel = Input.GetKey(KeyCode.LeftShift);
 		float h = CrossPlatformInputManager.GetAxis("Horizontal");
 
 		// Pass all parameters to the character control script
-		m_Character.Move(h, m_Jump, pickup);
+		m_Character.Move(h, m_Jump, pickup, travel);
 		m_Jump = false;
 	}
 }
