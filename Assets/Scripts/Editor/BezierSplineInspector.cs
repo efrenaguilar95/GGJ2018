@@ -1,0 +1,136 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+[CustomEditor(typeof(BezierSpline))]
+public class BezierSplineInspector : Editor {
+    private BezierSpline spline;
+    private Transform handleTransform;
+    private Quaternion handleRotation;
+
+    private const int lineRenderSteps = 10; //
+
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        spline = target as BezierSpline;
+        if (GUILayout.Button("Add Curve"))
+        {
+            Undo.RecordObject(spline, "Add Curve");
+            spline.AddNode();
+            EditorUtility.SetDirty(spline);
+        }
+    }
+
+    private void OnSceneGUI()
+    {
+        spline = target as BezierSpline;
+        handleTransform = spline.transform;
+        handleRotation = (Tools.pivotRotation == PivotRotation.Local ?
+            spline.transform.rotation : Quaternion.identity);
+
+        if(spline.points.Count > 1)
+        {
+            ShowFullCurve();
+        }
+        for(int i = 0; i < spline.points.Count; i++)
+        {
+            SetInTangentGizmo(i);
+            SetOutTangentGizmo(i);
+        }
+    }
+
+    public void ShowFullCurve()
+    {
+        for(int i = 0; i < spline.points.Count - 1; i++)
+        {
+            RenderCurve(spline.points[i], spline.points[i + 1]);
+        }
+        if(spline.connectiveness == BezierSpline.SplineLink.Loop)
+        {
+            RenderCurve(spline.points[spline.points.Count - 1], spline.points[0]);
+        }
+    }
+
+    #region CurveNodeInspector Duplicates
+    private enum SelectedCurveType
+    {
+        outTangent,
+        inTangent,
+        unknown
+    }
+
+    private int selectedNodeIndex;
+    private SelectedCurveType selectedUI;
+    private const float handleSize = 0.04f;
+    private const float pickSize = 0.06f;
+
+    private Vector2 GetTangent(CurveNode node, SelectedCurveType type)
+    {
+        if (type == SelectedCurveType.inTangent) return node.inTangent;
+        return node.outTangent;
+    }
+
+    private void SetTangent(int index, SelectedCurveType type, Vector2 value)
+    {
+        if (type == SelectedCurveType.inTangent)
+        {
+            spline.points[index].inTangent = value;
+        }
+        else
+        {
+            spline.points[index].outTangent = value;
+        }
+    }
+
+    private Vector2 SetInTangentGizmo(int index)
+    {
+        return SetTangentGizmo(index, SelectedCurveType.inTangent);
+    }
+
+    private Vector2 SetOutTangentGizmo(int index)
+    {
+        return SetTangentGizmo(index, SelectedCurveType.outTangent);
+    }
+
+    private Vector2 SetTangentGizmo(int index, SelectedCurveType requestedUI)
+    {
+        Vector2 tangent = GetTangent(spline.points[index], requestedUI);
+        Handles.color = Color.white;
+        Vector2 point = spline.points[index].transform.TransformPoint(tangent);
+        if (Handles.Button(point, handleRotation, handleSize, pickSize, Handles.DotHandleCap))
+        {
+            selectedUI = requestedUI;
+            selectedNodeIndex = index;
+        }
+        if (selectedUI == requestedUI && selectedNodeIndex == index)
+        {
+            EditorGUI.BeginChangeCheck();
+            point = Handles.DoPositionHandle(point, handleRotation);
+            if (EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(spline.points[index]);
+                EditorUtility.SetDirty(spline);
+                tangent = spline.points[index].transform.InverseTransformPoint(point);
+                SetTangent(index, requestedUI, tangent);
+            }
+        }
+
+        Handles.DrawLine(point, spline.points[index].transform.position);
+        return point;
+    }
+
+    public static void RenderCurve(CurveNode lhs, CurveNode rhs)
+    {
+        Handles.color = Color.white;
+        Vector2 lineStart = CurveNode.GetInvervalPosition(lhs, rhs, 0f);
+        for (int i = 0; i < lineRenderSteps; i++)
+        {
+            Vector2 lineEnd = CurveNode.GetInvervalPosition(lhs, rhs, (i + 1) / (float)lineRenderSteps);
+            Handles.DrawLine(lineStart, lineEnd);
+            lineStart = lineEnd;
+        }
+    }
+#endregion
+}
