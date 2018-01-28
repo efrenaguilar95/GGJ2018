@@ -7,26 +7,27 @@ using UnityEngine.Audio;
 
 public class MenuButtons : MonoBehaviour {
 
-    public Image fadeImage;
-    public Animator anim;
+
     GameObject primaryMenu;
     GameObject creditsScreen;
     GameObject optionsBox;
     Slider volumeSlider;
+    Slider sfxVolumeSlider;
 
     public GameObject pauseMenu;
     bool isPaused = false;
     bool canPause = false; //Check if player has started the game, because they cannot pause in the main menu
 
-    public AudioMixerGroup masterAudioMixer;
+    public AudioMixerGroup musicAudioMixer;
+    public AudioMixerGroup sfxAudioMixer;
 
     private void Start()
     {
-        anim = transform.Find("FadeImage").GetComponent<Animator>();
         primaryMenu = transform.Find("PrimaryMenu").gameObject;
         creditsScreen = transform.Find("CreditsPanel").gameObject;
         optionsBox = transform.Find("VolumePanel").gameObject;
         volumeSlider = optionsBox.transform.Find("VolumeSlider").GetComponent<Slider>();
+        sfxVolumeSlider = optionsBox.transform.Find("SFXVolSlider").GetComponent<Slider>();
         pauseMenu = gameObject.transform.Find("PauseMenu").gameObject;
         //Needed for initial volume setting
         VolumeSlideControl();
@@ -44,12 +45,6 @@ public class MenuButtons : MonoBehaviour {
 
     public void OnStartClick()
     {
-        StartCoroutine(FadeInOut());
-    }
-    IEnumerator FadeInOut()
-    {
-        anim.SetBool("Fade", true);
-        yield return new WaitUntil(() => fadeImage.color.a == 1);
         canPause = true;
         SceneManager.LoadScene(1);
         primaryMenu.SetActive(!primaryMenu.activeSelf);
@@ -78,7 +73,8 @@ public class MenuButtons : MonoBehaviour {
 
     public void VolumeSlideControl()
     {
-        masterAudioMixer.audioMixer.SetFloat("MasterVolume", volumeSlider.value);
+        musicAudioMixer.audioMixer.SetFloat("MusicVolume", volumeSlider.value);
+        sfxAudioMixer.audioMixer.SetFloat("SFXVolume", sfxVolumeSlider.value);
     }
 
     public void OnGamePaused()

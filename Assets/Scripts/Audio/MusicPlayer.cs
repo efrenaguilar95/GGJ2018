@@ -43,7 +43,7 @@ public class MusicPlayer : MonoBehaviour {
     {
         float currentAudioVolume;
         playerSongGroup.audioMixer.GetFloat("FriendSongVol", out currentAudioVolume);
-        Debug.Log(currentAudioVolume);
+        //Debug.Log(currentAudioVolume);
         while (currentAudioVolume <= 0)
         {
             playerSongGroup.audioMixer.GetFloat("FriendSongVol", out currentAudioVolume);
