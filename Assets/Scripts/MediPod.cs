@@ -8,9 +8,10 @@ public class MediPod : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Human")
+		print (other.GetType());
+		if (other.tag == "Human")
         {
-			GameObject human = other.transform.parent.gameObject;
+			GameObject human = other.transform.gameObject;
 			Animator humanAnimator = human.GetComponentInChildren<Animator>();
 			if (!humanAnimator.GetBool("Hanging"))
 			{

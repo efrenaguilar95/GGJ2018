@@ -38,9 +38,6 @@ public class PlayerController : MonoBehaviour
 	private void Awake()
 	{
 		// Setting up references.
-		Physics2D.IgnoreLayerCollision(8, 9);
-		Physics2D.IgnoreLayerCollision(8, 8);
-
 		m_GroundCheck = transform.Find("GroundCheck");
 		m_Grounded = false;
 		m_Carrying = false;
@@ -57,6 +54,7 @@ public class PlayerController : MonoBehaviour
 		if (other.CompareTag("Human") && m_Carrying == false)
 		{
 			m_OnHuman = true;
+
 			m_Human = other.transform.parent.gameObject;
 			m_HumanAnim = m_Human.GetComponentInChildren<Animator>();
 			CheckHumanFacingRight();
@@ -154,7 +152,9 @@ public class PlayerController : MonoBehaviour
 			else if (!pickup && m_CarryToggle)
 			{
 				m_CarryToggle = false;
+
 			}
+
 		}
 				
 		m_Anim.SetBool ("Carry", m_Carrying);
@@ -239,7 +239,6 @@ public class PlayerController : MonoBehaviour
 	public void ChangeHappiness(int change)
 	{
 		m_Happiness += change;
-		print (m_Happiness);
 		GameObject headSprite = GameObject.FindGameObjectWithTag ("Head");
 		SpriteRenderer headSpriteRenderer = headSprite.GetComponent<SpriteRenderer> ();
 		if (m_Happiness >= 10) {
