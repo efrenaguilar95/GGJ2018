@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212195870063503584}
   m_Layer: 8
   m_Name: MainCharacterParts_Head
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1208853452905556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalPosition: {x: 32.4, y: 32.9, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4874775159770748}
@@ -579,10 +579,14 @@ MonoBehaviour:
   m_Carrying: 0
   m_Electric: 0
   m_CarryPos: {fileID: 4709174144141662}
-  m_HappyHead: {fileID: 21300000, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
-  m_NormalHead: {fileID: 21300000, guid: c47527d2604dc564386f78bac2bae28a, type: 3}
+  m_HappyHead: {fileID: 21300000, guid: c47527d2604dc564386f78bac2bae28a, type: 3}
+  m_NormalHead: {fileID: 21300000, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
   m_SadHead: {fileID: 21300000, guid: ac9eded57662747449caa3e23821cbc1, type: 3}
+<<<<<<< HEAD
   m_Happiness: -640
+=======
+  m_Happiness: 0
+>>>>>>> fb428c9623a2f6cae764b5dd04ebef74636436e7
   helpToggleEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -710,7 +714,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ac9eded57662747449caa3e23821cbc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

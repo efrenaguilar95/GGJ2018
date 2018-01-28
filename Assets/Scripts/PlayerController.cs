@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour
 	public void ChangeHappiness(int change)
 	{
 		m_Happiness += change;
-
+		print (m_Happiness);
 		GameObject headSprite = GameObject.FindGameObjectWithTag ("Head");
 		SpriteRenderer headSpriteRenderer = headSprite.GetComponent<SpriteRenderer> ();
 		if (m_Happiness >= 10) {
