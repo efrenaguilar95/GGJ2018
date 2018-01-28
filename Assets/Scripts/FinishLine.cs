@@ -6,13 +6,21 @@ using UnityEngine.UI; //Needed for text
 public class FinishLine : MonoBehaviour {
     public Text victoryText;
 
+    private bool funState = false;
+
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         GameObject hitObj = collider.gameObject;
         if (hitObj.tag == "Player")
         {
-            //transform.parent.gameObject.AddComponent<ResultsScreen>;
+            funState = true;
             victoryText.text = "Hurray!";
         }
+    }
+
+    public bool GetFunState()
+    {
+        return funState;
     }
 }
