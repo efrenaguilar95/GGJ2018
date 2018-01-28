@@ -11,12 +11,16 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 	[SerializeField] private bool m_Carrying;            				// Whether or not the player is carrying a person
 	public Transform m_CarryPos;
+	public Sprite m_HappyHead;
+	public Sprite m_NormalHead;
+	public Sprite m_SadHead;
 
 	private Transform m_GroundCheck;    // A position marking where to check if the player is grounded
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded
 	private bool m_CarryToggle;         // Restricts picking up and placing down with the same keypress
-	private int m_Happiness;
+	[SerializeField] private int m_Happiness;
+
 
 	private bool m_OnHuman;
 	private GameObject m_Human;
@@ -211,6 +215,16 @@ public class PlayerController : MonoBehaviour
 	public void ChangeHappiness(int change)
 	{
 		m_Happiness += change;
+
+		GameObject headSprite = GameObject.FindGameObjectWithTag ("Head");
+		SpriteRenderer headSpriteRenderer = headSprite.GetComponent<SpriteRenderer> ();
+		if (m_Happiness >= 10) {
+			headSpriteRenderer.sprite = m_HappyHead;
+		} else if (m_Happiness <= -10) {
+			headSpriteRenderer.sprite = m_SadHead;
+		} else {
+			headSpriteRenderer.sprite = m_NormalHead;
+		}
 	}
 
 	public int GetHappiness()

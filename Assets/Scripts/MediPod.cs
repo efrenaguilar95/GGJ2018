@@ -10,9 +10,9 @@ public class MediPod : MonoBehaviour
     {
         if (other.tag == "Human")
         {
-			GameObject human = GetComponent<Collider>().gameObject;
+			GameObject human = other.transform.parent.gameObject;
 			Animator humanAnimator = human.GetComponentInChildren<Animator>();
-			if (!humanAnimator.GetBool ("Hanging"))
+			if (!humanAnimator.GetBool("Hanging"))
 			{
 				// remove human
 				Destroy(human);
