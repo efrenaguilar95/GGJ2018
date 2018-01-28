@@ -23,6 +23,9 @@ public class MenuButtons : MonoBehaviour {
         creditsScreen = transform.Find("CreditsPanel").gameObject;
         optionsBox = transform.Find("VolumePanel").gameObject;
         volumeSlider = optionsBox.transform.Find("VolumeSlider").GetComponent<Slider>();
+
+        //Needed for initial volume setting
+        VolumeSlideControl();
     }
     public void OnStartClick()
     {
