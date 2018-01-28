@@ -8,7 +8,8 @@ public class MusicPlayer : MonoBehaviour {
     public PlayerController player;
     public AudioMixerGroup playerSongGroup;
     public AudioMixerGroup friendSongGroup;
-    public float fadeRate = 1;
+    public float fadeInRate = 1;
+    public float fadeOutRate = 1;
 
     IEnumerator fadeInMethod;
     IEnumerator fadeOutMethod;
@@ -27,14 +28,14 @@ public class MusicPlayer : MonoBehaviour {
     {
         if(player.IsCarrying())
         {
-            fadeInMethod = fadeIn(friendSongGroup, fadeRate);
+            fadeInMethod = fadeIn(friendSongGroup, fadeInRate);
             if (fadeOutMethod != null)
                 StopCoroutine(fadeOutMethod);
             StartCoroutine(fadeInMethod);
         }
         else
         {
-            fadeOutMethod = fadeOut(friendSongGroup, fadeRate);
+            fadeOutMethod = fadeOut(friendSongGroup, fadeOutRate);
             if (fadeInMethod != null)
                 StopCoroutine(fadeInMethod);
             StartCoroutine(fadeOutMethod);

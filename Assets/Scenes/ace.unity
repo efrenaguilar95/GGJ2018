@@ -597,7 +597,8 @@ MonoBehaviour:
     type: 2}
   friendSongGroup: {fileID: 243078534928449280, guid: c05673f8761357c4e8aad6593b76ddfc,
     type: 2}
-  fadeRate: 30
+  fadeInRate: 100
+  fadeOutRate: 30
 --- !u!4 &647862001
 Transform:
   m_ObjectHideFlags: 0
