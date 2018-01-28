@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 	private GameObject m_Human;
 	private Animator m_HumanAnim;
 	private Vector3 m_HumanCarryingPos;
-	[SerializeField] private bool m_HumanFacingRight;
+	private bool m_HumanFacingRight;
 
 	private Animator m_Anim;            // Reference to the player's animator component
 	private Rigidbody2D m_Rigidbody2D;  // Reference to the player's rigidbody2d component
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 	{
 		// Setting up references.
 		Physics2D.IgnoreLayerCollision(8, 9);
+		Physics2D.IgnoreLayerCollision(8, 8);
 
 		m_GroundCheck = transform.Find("GroundCheck");
 		m_Grounded = false;
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Human") && m_OnHuman == false)
+		if (other.CompareTag("Human") && m_Carrying == false)
 		{
 			m_OnHuman = true;
 			m_Human = other.transform.parent.gameObject;
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
 	void OnTriggerExit2D(Collider2D other)
 	{
-		if (other.CompareTag("Human"))
+		if (other.CompareTag("Human") && m_Carrying == false)
 		{
 			m_OnHuman = false;
 		}
@@ -130,7 +131,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if (pickup && !m_CarryToggle)
 			{
-				m_CarryToggle = !m_CarryToggle;
+				m_CarryToggle = true;
 				m_Carrying = !m_Carrying;
 				m_HumanAnim.SetBool("Hanging", m_Carrying);
 
@@ -140,7 +141,7 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (!pickup && m_CarryToggle)
 			{
-				m_CarryToggle = !m_CarryToggle;
+				m_CarryToggle = false;
 			}
 		}
 				
