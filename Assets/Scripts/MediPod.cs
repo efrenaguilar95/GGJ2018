@@ -6,10 +6,10 @@ public class MediPod : MonoBehaviour
 {
 	public GameObject m_Player;
 
-	private void OnTriggerEnter2D(Collider2D other)
+	private void OnTriggerStay2D(Collider2D other)
     {
-		print (other.GetType());
-		if (other.tag == "Human")
+		print (other.tag);
+		if (other.tag == "Helpless")
         {
 			GameObject human = other.transform.gameObject;
 			Animator humanAnimator = human.GetComponentInChildren<Animator>();
