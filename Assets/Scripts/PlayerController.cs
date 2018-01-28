@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent helpToggleEvent; //Event called when the player m_CarryTogggle is changed
 
+    private AudioSource audioSource;
+    public AudioClip jumpSound;
+    public AudioClip electrcity;
+
 	private void Awake()
 	{
 		// Setting up references.
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour
 		m_Happiness = 0;
 		m_Anim = GetComponentInChildren<Animator>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
         //Setting up spline mover reference
         m_SplineMover = GetComponent<PlayerSplineWalker>();
@@ -206,6 +211,7 @@ public class PlayerController : MonoBehaviour
                         }
                         m_Electric = true;
                         Debug.Log("Attempted to Travel");
+                        audioSource.PlayOneShot(electrcity);
                     }
                     else
                     {
@@ -273,6 +279,7 @@ public class PlayerController : MonoBehaviour
 			m_Grounded = false;
 			m_Anim.SetBool("Ground", false);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            audioSource.PlayOneShot(jumpSound);
 		}
 	}
 
