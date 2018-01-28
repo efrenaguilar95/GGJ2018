@@ -9,7 +9,7 @@ public class BezierSplineInspector : Editor {
     private Transform handleTransform;
     private Quaternion handleRotation;
 
-    private const int lineRenderSteps = 10; //
+    private const int lineRenderSteps = 15; //
 
     public override void OnInspectorGUI()
     {
@@ -36,8 +36,7 @@ public class BezierSplineInspector : Editor {
         }
         for(int i = 0; i < spline.points.Count; i++)
         {
-            SetInTangentGizmo(i);
-            SetOutTangentGizmo(i);
+            SetNodeGizmo(i);
         }
     }
 
@@ -53,17 +52,38 @@ public class BezierSplineInspector : Editor {
         }
     }
 
-    #region CurveNodeInspector Duplicates
+    public static void RenderCurve(CurveNode lhs, CurveNode rhs)
+    {
+        Handles.color = Color.white;
+        Vector2 lineStart = CurveNode.GetInvervalPosition(lhs, rhs, 0f);
+        for (int i = 0; i < lineRenderSteps; i++)
+        {
+            Vector2 lineEnd = CurveNode.GetInvervalPosition(lhs, rhs, (i + 1) / (float)lineRenderSteps);
+            Handles.DrawLine(lineStart, lineEnd);
+            lineStart = lineEnd;
+        }
+    }
+
+    #region Individual Node Rendering
     private enum SelectedCurveType
     {
         outTangent,
         inTangent,
+        nodeRoot,
         unknown
     }
 
+    private static Color[] nodeDisplayColors =
+    {
+        Color.white,
+        Color.yellow,
+        Color.cyan
+    };
+
     private int selectedNodeIndex;
     private SelectedCurveType selectedUI;
-    private const float handleSize = 0.04f;
+    private const float handleRootSize = 0.06f;
+    private const float handleTangentSize = 0.04f;
     private const float pickSize = 0.06f;
 
     private Vector2 GetTangent(CurveNode node, SelectedCurveType type)
@@ -84,6 +104,13 @@ public class BezierSplineInspector : Editor {
         }
     }
 
+    private void SetNodeGizmo(int index)
+    {
+        SetInTangentGizmo(index);
+        SetOutTangentGizmo(index);
+        SetNodeRootGizmo(index);
+    }
+
     private Vector2 SetInTangentGizmo(int index)
     {
         return SetTangentGizmo(index, SelectedCurveType.inTangent);
@@ -97,9 +124,9 @@ public class BezierSplineInspector : Editor {
     private Vector2 SetTangentGizmo(int index, SelectedCurveType requestedUI)
     {
         Vector2 tangent = GetTangent(spline.points[index], requestedUI);
-        Handles.color = Color.white;
+        Handles.color = nodeDisplayColors[index % nodeDisplayColors.Length];
         Vector2 point = spline.points[index].transform.TransformPoint(tangent);
-        if (Handles.Button(point, handleRotation, handleSize, pickSize, Handles.DotHandleCap))
+        if (Handles.Button(point, handleRotation, handleTangentSize, pickSize, Handles.DotHandleCap))
         {
             selectedUI = requestedUI;
             selectedNodeIndex = index;
@@ -121,16 +148,32 @@ public class BezierSplineInspector : Editor {
         return point;
     }
 
-    public static void RenderCurve(CurveNode lhs, CurveNode rhs)
+    private Vector2 SetNodeRootGizmo(int index)
     {
-        Handles.color = Color.white;
-        Vector2 lineStart = CurveNode.GetInvervalPosition(lhs, rhs, 0f);
-        for (int i = 0; i < lineRenderSteps; i++)
+        Handles.color = nodeDisplayColors[index % nodeDisplayColors.Length];
+        Vector2 point = spline.points[index].position;
+        float size = handleRootSize;
+        if(index == 0)
         {
-            Vector2 lineEnd = CurveNode.GetInvervalPosition(lhs, rhs, (i + 1) / (float)lineRenderSteps);
-            Handles.DrawLine(lineStart, lineEnd);
-            lineStart = lineEnd;
+            size *= 2;
         }
+        if (Handles.Button(point, handleRotation, size, pickSize, Handles.DotHandleCap))
+        {
+            selectedUI = SelectedCurveType.nodeRoot;
+            selectedNodeIndex = index;
+        }
+        if(selectedUI == SelectedCurveType.nodeRoot && selectedNodeIndex == index)
+        {
+            EditorGUI.BeginChangeCheck();
+            point = Handles.DoPositionHandle(point, handleRotation);
+            if(EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(spline.points[index]);
+                EditorUtility.SetDirty(spline);
+                spline.points[index].position = point;
+            }
+        }
+        return point;
     }
-#endregion
+    #endregion
 }
