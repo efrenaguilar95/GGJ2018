@@ -46,8 +46,9 @@ public class MenuButtons : MonoBehaviour {
     public void OnStartClick()
     {
         canPause = true;
-        SceneManager.LoadScene(1);
         primaryMenu.SetActive(!primaryMenu.activeSelf);
+        SceneManager.LoadScene(1);
+        
     }
 
     public void OnExitClick()
