@@ -597,7 +597,7 @@ MonoBehaviour:
     type: 2}
   friendSongGroup: {fileID: 243078534928449280, guid: c05673f8761357c4e8aad6593b76ddfc,
     type: 2}
-  fadeRate: 0.1
+  fadeRate: 30
 --- !u!4 &647862001
 Transform:
   m_ObjectHideFlags: 0
@@ -679,6 +679,11 @@ Prefab:
         type: 2}
       propertyPath: helpToggleEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 82425104477502056, guid: 807f4c6e02fb96147a4671c36666a674,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 807f4c6e02fb96147a4671c36666a674, type: 2}
