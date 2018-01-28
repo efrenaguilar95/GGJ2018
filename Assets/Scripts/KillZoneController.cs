@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 public class KillZoneController : MonoBehaviour
 {
 	public GameObject m_Player;
+    public GameOverManager gameOver;
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.tag == "Player")
 		{
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+            gameOver.SetFailState(true);
 		}
 		else if (other.tag == "Human")
 		{
