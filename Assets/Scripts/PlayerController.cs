@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
 	private Transform m_GroundCheck;    // A position marking where to check if the player is grounded
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded
-	private Transform m_CeilingCheck;   // A position marking where to check for ceilings
 	private bool m_CarryToggle;         // Restricts picking up and placing down with the same keypress
 	private Animator m_Anim;            // Reference to the player's animator component
 	private Rigidbody2D m_Rigidbody2D;  // Reference to the player's rigidbody2d component
@@ -23,11 +22,10 @@ public class PlayerController : MonoBehaviour
 	{
 		// Setting up references.
 		m_GroundCheck = transform.Find("GroundCheck");
-		m_CeilingCheck = transform.Find("CeilingCheck");
 		m_Grounded = false;
 		m_Carrying = false;
 		m_CarryToggle = false;
-		m_Anim = GetComponent<Animator>();
+		m_Anim = GetComponentInChildren<Animator>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 

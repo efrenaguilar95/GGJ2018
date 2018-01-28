@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 	public float m_lookAheadFactor = 3f;
 	public float m_lookAheadReturnSpeed = 0f;
 	public float m_lookAheadMoveThreshold = 0.1f;
-	public float m_lookAboveFactor = 2f;
+	public float m_lookAboveFactor = 1f;
 	public float m_cameraFloor = -1f;
 
 	private float m_OffsetZ;
