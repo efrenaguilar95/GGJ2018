@@ -450,7 +450,6 @@ MonoBehaviour:
     m_Bits: 4294967039
   m_Carrying: 0
   m_CarryPos: {fileID: 4709174144141662}
-  m_HumanFacingRight: 0
 --- !u!212 &212020145542019144
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -660,7 +659,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300012, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -748,7 +747,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300006, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
