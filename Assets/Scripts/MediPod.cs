@@ -9,7 +9,12 @@ public class MediPod : MonoBehaviour {
         GameObject hitObj = collider.gameObject;
         if (hitObj.tag == "Human")
         {
-            Destroy(hitObj);
+			Animator humanAnimator = hitObj.GetComponentInChildren<Animator>();
+			if (!humanAnimator.GetBool ("Hanging"))
+			{
+				Destroy (hitObj);
+				// Give happiness
+			}
         }
     }
 }
