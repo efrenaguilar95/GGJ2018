@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MediPod : MonoBehaviour {
+public class MediPod : MonoBehaviour
+{
+	public GameObject m_Player;
 
-    void OnTriggerStay2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D other)
     {
-        GameObject hitObj = collider.gameObject;
-        if (hitObj.tag == "Human")
+        if (other.tag == "Human")
         {
-			Animator humanAnimator = hitObj.GetComponentInChildren<Animator>();
+			GameObject human = collider.gameObject;
+			Animator humanAnimator = human.GetComponentInChildren<Animator>();
 			if (!humanAnimator.GetBool ("Hanging"))
 			{
-				Destroy (hitObj);
-				// Give happiness
+				// remove human
+				Destroy(human);
+
+				// give happiness
+				PlayerController playerControllerScript = m_Player.GetComponentInChildren<PlayerController>();
+				playerControllerScript.ChangeHappiness(10);
 			}
         }
     }
