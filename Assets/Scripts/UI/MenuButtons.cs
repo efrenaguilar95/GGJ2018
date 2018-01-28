@@ -8,10 +8,18 @@ public class MenuButtons : MonoBehaviour {
 
     public Image fadeImage;
     public Animator anim;
+    GameObject primaryMenu;
+    GameObject creditsScreen;
+    GameObject optionsBox;
+    Slider volumeSlider;
 
     private void Start()
     {
         anim = transform.Find("FadeImage").GetComponent<Animator>();
+        primaryMenu = transform.Find("PrimaryMenu").gameObject;
+        creditsScreen = transform.Find("CreditsPanel").gameObject;
+        optionsBox = transform.Find("VolumePanel").gameObject;
+        volumeSlider = optionsBox.transform.Find("VolumeSlider").GetComponent<Slider>();
     }
     public void OnStartClick()
     {
@@ -32,5 +40,21 @@ public class MenuButtons : MonoBehaviour {
         }
         else
             Application.Quit();
+    }
+
+    public void OnCreditsClick()
+    {
+        primaryMenu.SetActive(!primaryMenu.activeSelf);
+        creditsScreen.SetActive(!creditsScreen.activeSelf);
+    }
+
+    public void OnOptionsClick()
+    {
+        optionsBox.SetActive(!optionsBox.activeSelf);
+    }
+
+    public void VolumeSlideControl()
+    {
+        //??? = volumeSlider.value;
     }
 }
