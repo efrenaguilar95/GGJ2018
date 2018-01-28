@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4909004018912918}
   - component: {fileID: 212195870063503584}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainCharacterParts_Head
   m_TagString: Head
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4620059099953546}
   - component: {fileID: 212020145542019144}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainCharacterPartsLowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4310741113574216}
   - component: {fileID: 212676939111288278}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainCharacterParts_BackArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4682433797932102}
   - component: {fileID: 212271533319941510}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CharacterLightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4709174144141662}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: CarryPos
   m_TagString: Untagged
   m_Icon: {fileID: 8220585740371884164, guid: 0000000000000000d000000000000000, type: 0}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4251679156460208}
   - component: {fileID: 212694626043540864}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainCharacterParts_BackLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4849878862620904}
   - component: {fileID: 212073670209317830}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainCharacterPartsTorso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4813614358621396}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4598205924250874}
   - component: {fileID: 212559557955640528}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainCharacterParts_FrontLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4393682759556774}
   - component: {fileID: 212308148174379768}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MainCharacterPartsUpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 95422179489466200}
   - component: {fileID: 82425104477502056}
   - component: {fileID: 114040575651684074}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
