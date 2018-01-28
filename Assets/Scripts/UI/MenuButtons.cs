@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MenuButtons : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class MenuButtons : MonoBehaviour {
     GameObject optionsBox;
     Slider volumeSlider;
 
+    public AudioMixerGroup masterAudioMixer;
+
     private void Start()
     {
         anim = transform.Find("FadeImage").GetComponent<Animator>();
@@ -20,6 +23,9 @@ public class MenuButtons : MonoBehaviour {
         creditsScreen = transform.Find("CreditsPanel").gameObject;
         optionsBox = transform.Find("VolumePanel").gameObject;
         volumeSlider = optionsBox.transform.Find("VolumeSlider").GetComponent<Slider>();
+
+        //Needed for initial volume setting
+        VolumeSlideControl();
     }
     public void OnStartClick()
     {
@@ -55,6 +61,6 @@ public class MenuButtons : MonoBehaviour {
 
     public void VolumeSlideControl()
     {
-        //??? = volumeSlider.value;
+        masterAudioMixer.audioMixer.SetFloat("MasterVolume", volumeSlider.value);
     }
 }
