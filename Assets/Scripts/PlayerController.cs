@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded
 	private bool m_CarryToggle;         // Restricts picking up and placing down with the same keypress
+	private int m_Happiness;
 
 	private bool m_OnHuman;
 	private GameObject m_Human;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
 		m_Grounded = false;
 		m_Carrying = false;
 		m_CarryToggle = false;
+		m_Happiness = 0;
 		m_Anim = GetComponentInChildren<Animator>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
@@ -204,5 +206,15 @@ public class PlayerController : MonoBehaviour
 	public bool IsCarrying()
 	{
 		return m_Carrying;
+	}
+
+	public void ChangeHappiness(int change)
+	{
+		m_Happiness += change;
+	}
+
+	public int GetHappiness()
+	{
+		return m_Happiness;
 	}
 }
