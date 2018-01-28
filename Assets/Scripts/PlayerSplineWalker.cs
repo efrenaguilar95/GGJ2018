@@ -44,6 +44,7 @@ public class PlayerSplineWalker : MonoBehaviour {
         {
             progress = 1f;
         }
+        this.direction = direction;
         this.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
