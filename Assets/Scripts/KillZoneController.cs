@@ -15,7 +15,7 @@ public class KillZoneController : MonoBehaviour
 		else if (other.tag == "Human")
 		{
 			// remove human
-			GameObject human = collider.gameObject;
+			GameObject human = GetComponent<Collider>().gameObject;
 			Destroy(human);
 
 			// take away happiness

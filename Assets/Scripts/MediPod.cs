@@ -10,7 +10,7 @@ public class MediPod : MonoBehaviour
     {
         if (other.tag == "Human")
         {
-			GameObject human = collider.gameObject;
+			GameObject human = GetComponent<Collider>().gameObject;
 			Animator humanAnimator = human.GetComponentInChildren<Animator>();
 			if (!humanAnimator.GetBool ("Hanging"))
 			{

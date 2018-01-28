@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
 		return m_Carrying;
 	}
 
-	public int ChangeHappiness(int change)
+	public void ChangeHappiness(int change)
 	{
 		m_Happiness += change;
 	}
