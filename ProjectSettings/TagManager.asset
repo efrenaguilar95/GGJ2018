@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Human
   - Head
+  - Helpless
   layers:
   - Default
   - TransparentFX
