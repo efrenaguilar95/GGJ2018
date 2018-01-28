@@ -9,11 +9,19 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private bool m_AirControl = true;                  // Whether or not a player can steer while jumping
 	[SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 	[SerializeField] private bool m_Carrying;            				// Whether or not the player is carrying a person
+	public Transform m_CarryPos;
 
 	private Transform m_GroundCheck;    // A position marking where to check if the player is grounded
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded
 	private bool m_CarryToggle;         // Restricts picking up and placing down with the same keypress
+
+	private bool m_OnHuman;
+	private GameObject m_Human;
+	private Animator m_HumanAnim;
+	private Vector3 m_HumanCarryingPos;
+	[SerializeField] private bool m_HumanFacingRight;
+
 	private Animator m_Anim;            // Reference to the player's animator component
 	private Rigidbody2D m_Rigidbody2D;  // Reference to the player's rigidbody2d component
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing
@@ -21,12 +29,35 @@ public class PlayerController : MonoBehaviour
 	private void Awake()
 	{
 		// Setting up references.
+		Physics2D.IgnoreLayerCollision(8, 9);
+
 		m_GroundCheck = transform.Find("GroundCheck");
 		m_Grounded = false;
 		m_Carrying = false;
 		m_CarryToggle = false;
 		m_Anim = GetComponentInChildren<Animator>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+	}
+
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag("Human") && m_OnHuman == false)
+		{
+			m_OnHuman = true;
+			m_Human = other.transform.parent.gameObject;
+			m_HumanAnim = m_Human.GetComponentInChildren<Animator>();
+			CheckHumanFacingRight();
+		}
+	}
+	
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.CompareTag("Human"))
+		{
+			m_OnHuman = false;
+		}
 	}
 
 
@@ -49,31 +80,71 @@ public class PlayerController : MonoBehaviour
 	}
 
 
+	private void Update()
+	{
+		if (m_Carrying)
+			m_Human.transform.position = m_CarryPos.position;
+	}
+
+
+	private void CheckHumanFacingRight()
+	{
+		if (m_Human.transform.localScale.x > 0)
+			m_HumanFacingRight = true;
+		else
+			m_HumanFacingRight = false;
+	}
+
 	private void Flip()
 	{
-		// Switch the way the player is labelled as facing.
+		// Switch the way the player is labelled as facing
 		m_FacingRight = !m_FacingRight;
 
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		// Multiply the player's x local scale by -1
+		Vector3 playerScale = transform.localScale;
+		playerScale.x *= -1;
+		transform.localScale = playerScale;
+
+		FlipHuman();
+	}
+
+
+	private void FlipHuman()
+	{
+		// Multiply the human's x scale by -1
+		if (m_Carrying)
+		{
+			Vector3 humanScale = m_Human.transform.localScale;
+			Quaternion humanRot = m_Human.transform.localRotation;
+			humanScale.x *= -1;
+			humanRot.z *= -1;
+			m_Human.transform.localScale = humanScale;
+			m_Human.transform.localRotation = humanRot;
+		}
 	}
 
 
 	private void AttemptPickup(bool pickup)
 	{
-		if (pickup && !m_CarryToggle)
+		if (m_OnHuman)
 		{
-			m_CarryToggle = !m_CarryToggle;
-			m_Carrying = !m_Carrying;
+			if (pickup && !m_CarryToggle)
+			{
+				m_CarryToggle = !m_CarryToggle;
+				m_Carrying = !m_Carrying;
+				m_HumanAnim.SetBool("Hanging", m_Carrying);
+
+				CheckHumanFacingRight();
+				if (m_Carrying && (m_FacingRight != m_HumanFacingRight))
+					FlipHuman ();
+			}
+			else if (!pickup && m_CarryToggle)
+			{
+				m_CarryToggle = !m_CarryToggle;
+			}
 		}
-		else if (!pickup && m_CarryToggle)
-		{
-			m_CarryToggle = !m_CarryToggle;
-		}
-			
-		m_Anim.SetBool("Carry", m_Carrying);
+				
+		m_Anim.SetBool ("Carry", m_Carrying);
 	}
 
 
