@@ -31,6 +31,11 @@ public class GameOverManager : MonoBehaviour {
         }
     }
 
+    public bool GetFailState()
+    {
+        return failState;
+    }
+
     public void SetFailState(bool state)
     {
         failState = state;
