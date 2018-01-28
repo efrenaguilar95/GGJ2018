@@ -523,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 114160782986652746}
   anim: {fileID: 0}
+  masterAudioMixer: {fileID: 24300002, guid: f65a32334cf6f85498d5d4b81b41992a, type: 2}
 --- !u!114 &114136415779046636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -822,10 +823,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 224473832287756836}
   m_HandleRect: {fileID: 224021441085425786}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 0.7
+  m_Value: -10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
