@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4909004018912918}
   - component: {fileID: 212195870063503584}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MainCharacterParts_Head
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4620059099953546}
   - component: {fileID: 212020145542019144}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MainCharacterPartsLowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 61414633779020360}
   - component: {fileID: 114881681976719462}
   - component: {fileID: 114604722099838402}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4310741113574216}
   - component: {fileID: 212676939111288278}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MainCharacterParts_BackArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4682433797932102}
   - component: {fileID: 212271533319941510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CharacterLightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4709174144141662}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: CarryPos
   m_TagString: Untagged
   m_Icon: {fileID: 8220585740371884164, guid: 0000000000000000d000000000000000, type: 0}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4251679156460208}
   - component: {fileID: 212694626043540864}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MainCharacterParts_BackLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4849878862620904}
   - component: {fileID: 212073670209317830}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MainCharacterPartsTorso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4813614358621396}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4598205924250874}
   - component: {fileID: 212559557955640528}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MainCharacterParts_FrontLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4393682759556774}
   - component: {fileID: 212308148174379768}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MainCharacterPartsUpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 95422179489466200}
   - component: {fileID: 82425104477502056}
   - component: {fileID: 114040575651684074}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1208853452905556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalPosition: {x: 32.4, y: 32.9, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4874775159770748}
@@ -577,11 +577,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294965503
   m_Carrying: 0
+  m_Electric: 0
   m_CarryPos: {fileID: 4709174144141662}
-  m_HappyHead: {fileID: 21300000, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
-  m_NormalHead: {fileID: 21300000, guid: c47527d2604dc564386f78bac2bae28a, type: 3}
+  m_HappyHead: {fileID: 21300000, guid: c47527d2604dc564386f78bac2bae28a, type: 3}
+  m_NormalHead: {fileID: 21300000, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
   m_SadHead: {fileID: 21300000, guid: ac9eded57662747449caa3e23821cbc1, type: 3}
-  m_Happiness: 120
+<<<<<<< HEAD
+  m_Happiness: -640
+=======
+  m_Happiness: 0
+>>>>>>> fb428c9623a2f6cae764b5dd04ebef74636436e7
   helpToggleEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -709,7 +714,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ac9eded57662747449caa3e23821cbc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91981775572d4da4fb290b038f9db66f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
