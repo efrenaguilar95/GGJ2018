@@ -3,8 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Human
+=======
+  tags: []
+>>>>>>> 9d6e1a899a198855ca56fd81c6237081375ab5f5
   layers:
   - Default
   - TransparentFX
@@ -14,9 +18,15 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - 
   - 
   - 
+=======
+  - Foreground
+  - Midground
+  - Background
+>>>>>>> 9d6e1a899a198855ca56fd81c6237081375ab5f5
   - 
   - 
   - 
