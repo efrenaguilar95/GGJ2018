@@ -16,7 +16,7 @@ public class MenuButtons : MonoBehaviour {
 
     public GameObject pauseMenu;
     bool isPaused = false;
-    bool canPause = false; //Check if player has started the game, because they cannot pause in the main menu
+    public bool canPause = false; //Check if player has started the game, because they cannot pause in the main menu
 
     public AudioMixerGroup musicAudioMixer;
     public AudioMixerGroup sfxAudioMixer;

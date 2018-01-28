@@ -1109,11 +1109,11 @@ Prefab:
         type: 3}
     - target: {fileID: 1328804619224766, guid: c26d37e9728268e428316518c074507b, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1254410769038346, guid: c26d37e9728268e428316518c074507b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114722220163070170, guid: c26d37e9728268e428316518c074507b,
         type: 2}
