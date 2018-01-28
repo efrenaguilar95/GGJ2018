@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
 	private Animator m_Anim;            // Reference to the player's animator component
 	private Rigidbody2D m_Rigidbody2D;  // Reference to the player's rigidbody2d component
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing
+
+    public UnityEvent helpToggleEvent; //Event called when the player m_CarryTogggle is changed
 
 	private void Awake()
 	{
@@ -83,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		if (m_Carrying)
+		if (m_Human != null && m_Carrying)
 			m_Human.transform.position = m_CarryPos.position;
 	}
 
@@ -133,7 +136,8 @@ public class PlayerController : MonoBehaviour
 			{
 				m_CarryToggle = true;
 				m_Carrying = !m_Carrying;
-				m_HumanAnim.SetBool("Hanging", m_Carrying);
+                helpToggleEvent.Invoke();
+                m_HumanAnim.SetBool("Hanging", m_Carrying);
 
 				CheckHumanFacingRight();
 				if (m_Carrying && (m_FacingRight != m_HumanFacingRight))

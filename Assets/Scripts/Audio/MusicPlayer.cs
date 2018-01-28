@@ -10,40 +10,43 @@ public class MusicPlayer : MonoBehaviour {
     public AudioMixerGroup friendSongGroup;
     public float fadeRate = 1;
 
-    public bool isWithFriend = false;
-
     IEnumerator fadeInMethod;
     IEnumerator fadeOutMethod;
 
 	// Use this for initialization
 	void Start () {
+        friendSongGroup.audioMixer.SetFloat("FriendSongVol", -80);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+	}
 
-        if(isWithFriend)
+    public void applyFade()
+    {
+        if(player.IsCarrying())
         {
             fadeInMethod = fadeIn(friendSongGroup, fadeRate);
-            if(fadeOutMethod != null)
+            if (fadeOutMethod != null)
                 StopCoroutine(fadeOutMethod);
             StartCoroutine(fadeInMethod);
         }
         else
         {
             fadeOutMethod = fadeOut(friendSongGroup, fadeRate);
-            if(fadeInMethod != null)
+            if (fadeInMethod != null)
                 StopCoroutine(fadeInMethod);
             StartCoroutine(fadeOutMethod);
         }
-		
-	}
+
+    }
 
     public IEnumerator fadeIn(AudioMixerGroup trackToFade, float fadeRate)
     {
+        Debug.Log("WTF");
         float currentAudioVolume;
         playerSongGroup.audioMixer.GetFloat("FriendSongVol", out currentAudioVolume);
-        //Debug.Log(currentAudioVolume);
         while (currentAudioVolume <= 0)
         {
             playerSongGroup.audioMixer.GetFloat("FriendSongVol", out currentAudioVolume);
@@ -55,6 +58,7 @@ public class MusicPlayer : MonoBehaviour {
 
     public IEnumerator fadeOut(AudioMixerGroup trackToFade, float fadeRate)
     {
+        Debug.Log("WTF2");
         float currentAudioVolume;
         playerSongGroup.audioMixer.GetFloat("FriendSongVol", out currentAudioVolume);
         while (currentAudioVolume >= -80)
