@@ -39,7 +39,6 @@ public class MusicPlayer : MonoBehaviour {
 		
 	}
 
-    //TODO: Look into using Mathf.Lerp instead
     public IEnumerator fadeIn(AudioMixerGroup trackToFade, float fadeRate)
     {
         float currentAudioVolume;
