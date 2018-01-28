@@ -9,7 +9,7 @@ public class BezierSplineInspector : Editor {
     private Transform handleTransform;
     private Quaternion handleRotation;
 
-    private const int lineRenderSteps = 15; //
+    private const int lineRenderSteps = 15; 
 
     public override void OnInspectorGUI()
     {
@@ -19,6 +19,12 @@ public class BezierSplineInspector : Editor {
         {
             Undo.RecordObject(spline, "Add Curve");
             spline.AddNode();
+            EditorUtility.SetDirty(spline);
+        }
+        if (GUILayout.Button("Update Colliders"))
+        {
+            Undo.RecordObject(spline, "Update Colliders");
+            spline.UpdateStartAndEndColliders();
             EditorUtility.SetDirty(spline);
         }
     }

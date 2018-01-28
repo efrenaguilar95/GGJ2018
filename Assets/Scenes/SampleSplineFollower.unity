@@ -122,8 +122,9 @@ GameObject:
   m_Component:
   - component: {fileID: 975603313}
   - component: {fileID: 975603312}
+  - component: {fileID: 975603314}
   m_Layer: 0
-  m_Name: StartNode
+  m_Name: Start Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +144,6 @@ MonoBehaviour:
   intervalKeyframe: 0
   outTangent: {x: 0.42882252, y: 0.59422183}
   inTangent: {x: -0.74451566, y: -0.37913585}
-  isEndOrStartOfCurve: 0
 --- !u!4 &975603313
 Transform:
   m_ObjectHideFlags: 0
@@ -157,6 +157,21 @@ Transform:
   m_Father: {fileID: 1388524207}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &975603314
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975603311}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.21
 --- !u!1 &1004435677
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +202,6 @@ MonoBehaviour:
   intervalKeyframe: 0
   outTangent: {x: 1, y: 0}
   inTangent: {x: -1.0000002, y: -1.2204733}
-  isEndOrStartOfCurve: 0
 --- !u!4 &1004435679
 Transform:
   m_ObjectHideFlags: 0
@@ -230,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 1388524206}
+  faceDirection: 1
   duration: 3
   progress: 0
 --- !u!212 &1133714566
@@ -266,7 +281,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4b5be7f185614ea4393bae9d7ed4e63d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89733a9384c5ef44ea5a175c0a93e6ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -288,6 +303,108 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1163701502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1163701504}
+  - component: {fileID: 1163701503}
+  m_Layer: 0
+  m_Name: Curve Node
+  m_TagString: Curve
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1163701503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1163701502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4744d27ff1749304998ead1557096440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalKeyframe: 0
+  outTangent: {x: 1, y: 0}
+  inTangent: {x: -1, y: 0}
+--- !u!4 &1163701504
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1163701502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1388524207}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1335853203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1335853206}
+  - component: {fileID: 1335853204}
+  - component: {fileID: 1335853205}
+  m_Layer: 0
+  m_Name: End Node
+  m_TagString: Curve
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1335853204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1335853203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4744d27ff1749304998ead1557096440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalKeyframe: 0
+  outTangent: {x: 1, y: 0}
+  inTangent: {x: -1, y: 0}
+--- !u!58 &1335853205
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1335853203}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.21
+--- !u!4 &1335853206
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1335853203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1388524207}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388524205
 GameObject:
@@ -321,8 +438,10 @@ MonoBehaviour:
   - {fileID: 1469111249}
   - {fileID: 1730070239}
   - {fileID: 1004435678}
+  - {fileID: 1163701503}
+  - {fileID: 1335853204}
   connectiveness: 0
-  enterExitCollisionRadius: 5
+  StartEndColliderSize: 3.21
 --- !u!4 &1388524207
 Transform:
   m_ObjectHideFlags: 0
@@ -337,6 +456,8 @@ Transform:
   - {fileID: 1469111250}
   - {fileID: 1730070240}
   - {fileID: 1004435679}
+  - {fileID: 1163701504}
+  - {fileID: 1335853206}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -451,7 +572,6 @@ MonoBehaviour:
   intervalKeyframe: 0
   outTangent: {x: 0.93179417, y: -1.4128876}
   inTangent: {x: -0.8703759, y: -1.0073326}
-  isEndOrStartOfCurve: 0
 --- !u!4 &1469111250
 Transform:
   m_ObjectHideFlags: 0
@@ -495,7 +615,6 @@ MonoBehaviour:
   intervalKeyframe: 0
   outTangent: {x: 1, y: 0}
   inTangent: {x: -1.7560759, y: -0.3381834}
-  isEndOrStartOfCurve: 0
 --- !u!4 &1730070240
 Transform:
   m_ObjectHideFlags: 0
