@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ResultsScreen : MonoBehaviour {
 
     public float transitionDelay = 5f;
-    public string nextScene;    //next level to enter
     public Text resultsText;
     public StarCounter stars;   //to check how many stars are given in this level depending on completion time
     public Timer time;          //to get the time the level completed
@@ -31,7 +30,7 @@ public class ResultsScreen : MonoBehaviour {
             transitionTimer = Time.deltaTime;
             if (transitionTimer >= transitionDelay)
             {
-                SceneManager.LoadScene(nextScene); //this thing needs a little bit of work in terms of going to the next scene.
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //this thing needs a little bit of work in terms of going to the next scene.
             }
         }
     }
