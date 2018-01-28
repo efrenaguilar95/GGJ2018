@@ -15,6 +15,7 @@ public class ResultsScreen : MonoBehaviour {
     
     private float transitionTimer;
     private Animator anim;
+    private bool safety = true;
 
     private void Awake()
     {
@@ -23,9 +24,9 @@ public class ResultsScreen : MonoBehaviour {
 
     private void Update()
     {
-        if (finisher.GetFunState() == true)
+        if (finisher.GetFunState() == true && safety == true)
         {
-            anim.SetTrigger("ResultsScreen");
+            safety = false;
             UpdateResultsText();
             transitionTimer = Time.deltaTime;
             if (transitionTimer >= transitionDelay)
@@ -39,24 +40,30 @@ public class ResultsScreen : MonoBehaviour {
     {
         float clock = time.GetTime();
         int starCount = 0;
-        resultsText.text = "You did it!\n";
+        resultsText.text += "You did it!\n";
 
-        if (clock > stars.starGoal3)
+        if (clock < stars.starGoal3)
         {
             anim.SetTrigger("3Star");
             starCount = 3;
+            resultsText.text += "You earned " + starCount + " stars!";
         }
-        else if (clock > stars.starGoal2)
+        else if (clock < stars.starGoal2)
         {
             anim.SetTrigger("2Star");
             starCount = 2;
+            resultsText.text += "You earned " + starCount + " stars!";
         }
-        else if (clock > stars.starGoal1)
+        else if (clock < stars.starGoal1)
         {
             anim.SetTrigger("1Star");
             starCount = 1;
+            resultsText.text += "You earned " + starCount + " stars!";
         }
-
-        resultsText.text += "You earned " + starCount + " stars!";
+        else
+        {
+            resultsText.text += "You earned no stars!";
+            anim.SetTrigger("ResultsScreen");
+        }
     }
 }
