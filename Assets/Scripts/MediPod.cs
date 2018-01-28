@@ -8,7 +8,6 @@ public class MediPod : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-		print (other.GetType());
 		if (other.tag == "Human")
         {
 			GameObject human = other.transform.gameObject;
