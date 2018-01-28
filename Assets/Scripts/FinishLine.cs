@@ -15,7 +15,6 @@ public class FinishLine : MonoBehaviour {
         if (hitObj.tag == "Player")
         {
             funState = true;
-            victoryText.text = "Hurray!";
         }
     }
 
