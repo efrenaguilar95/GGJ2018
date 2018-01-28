@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212355635096719006}
   - component: {fileID: 61804282165049796}
   - component: {fileID: 114065158781394990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MediPod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1128680646930254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 79.7, y: -2.44724, z: 0}
+  m_LocalPosition: {x: 23.263264, y: 1.8293347, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
