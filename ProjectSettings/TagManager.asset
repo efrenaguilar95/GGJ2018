@@ -7,6 +7,7 @@ TagManager:
   - Human
   - Head
   - Helpless
+  - Curve
   layers:
   - Default
   - TransparentFX
