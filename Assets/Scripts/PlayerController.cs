@@ -16,7 +16,10 @@ public class PlayerController : MonoBehaviour
 	public Sprite m_NormalHead;
 	public Sprite m_SadHead;
 
-	private Transform m_GroundCheck;    // A position marking where to check if the player is grounded
+    private CurveNode mEnteredCurveNode;
+    private PlayerSplineWalker m_SplineMover;
+
+    private Transform m_GroundCheck;    // A position marking where to check if the player is grounded
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded
 	private bool m_CarryToggle;         // Restricts picking up and placing down with the same keypress
@@ -46,7 +49,15 @@ public class PlayerController : MonoBehaviour
 		m_Happiness = 0;
 		m_Anim = GetComponentInChildren<Animator>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-	}
+
+        //Setting up spline mover reference
+        m_SplineMover = GetComponent<PlayerSplineWalker>();
+        if (m_SplineMover == null)
+        {
+            m_SplineMover = this.gameObject.AddComponent<PlayerSplineWalker>();
+            m_SplineMover.duration = 3f;
+        }
+    }
 
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -59,7 +70,11 @@ public class PlayerController : MonoBehaviour
 			m_HumanAnim = m_Human.GetComponentInChildren<Animator>();
 			CheckHumanFacingRight();
 		}
-	}
+        if (other.CompareTag("Curve"))
+        {
+            this.mEnteredCurveNode = other.GetComponent<CurveNode>();
+        }
+    }
 	
 
 	void OnTriggerExit2D(Collider2D other)
@@ -68,7 +83,11 @@ public class PlayerController : MonoBehaviour
 		{
 			m_OnHuman = false;
 		}
-	}
+        if (other.CompareTag("Curve"))
+        {
+            this.mEnteredCurveNode = null;
+        }
+    }
 
 
 	private void FixedUpdate()
@@ -161,20 +180,58 @@ public class PlayerController : MonoBehaviour
 	}
 
 
-	private void AttemptTravel()
-	{
-		// test is on start node
-		if (true)
-		{
-			// travel through wire
-			m_Electric = !m_Electric;
-			Debug.Log("Attempted to Travel");
-			// change animation
-		}
-	}
+    private void AttemptTravel()
+    {
+        // test is on start node
+        switch (m_Electric)
+        {
+            case (true): //is currently moving
+                m_SplineMover.disableSplineMovement();
+                m_Electric = false;
+                break;
+            case (false):
+                if (mEnteredCurveNode != null)
+                {
+                    var spline = mEnteredCurveNode.GetComponentInParent<BezierSpline>();
+                    if (spline != null)
+                    {
+                        //Begin wire travel
+                        if (spline.GetIndexOfNode(mEnteredCurveNode) == 0) //If start of curve
+                        {
+                            m_SplineMover.enableSplineMovement(PlayerSplineWalker.TravelDirection.Forward, spline);
+                        }
+                        else //if end of curve
+                        {
+                            m_SplineMover.enableSplineMovement(PlayerSplineWalker.TravelDirection.Backward, spline);
+                        }
+                        m_Electric = true;
+                        Debug.Log("Attempted to Travel");
+                    }
+                    else
+                    {
+                        Debug.LogError("Could not find parent spline of curve node " + mEnteredCurveNode.index);
+                    }
+                    // travel through wire
+
+                    //
+                    // change animation
+                }
+                break;
+
+        }
+        if (mEnteredCurveNode != null)
+        {
+            // travel through wire
+            m_Electric = !m_Electric;
+            Debug.Log("Attempted to Travel");
+
+            //
+            // change animation
+        }
+    }
 
 
-	public void Move(float move, bool jump, bool pickup, bool travel)
+    public void Move(float move, bool jump, bool pickup, bool travel)
 	{
 		// attempt to pickup a person if s is pressed
 		AttemptPickup(pickup);

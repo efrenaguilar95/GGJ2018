@@ -171,7 +171,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.21
+  m_Radius: 1.97
 --- !u!1 &1004435677
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +392,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.21
+  m_Radius: 1.97
 --- !u!4 &1335853206
 Transform:
   m_ObjectHideFlags: 0
@@ -440,8 +440,14 @@ MonoBehaviour:
   - {fileID: 1004435678}
   - {fileID: 1163701503}
   - {fileID: 1335853204}
+  distances:
+  - 5
+  - 10
+  - 7
+  - 8
+  - 4
   connectiveness: 0
-  StartEndColliderSize: 3.21
+  StartEndColliderSize: 1.97
 --- !u!4 &1388524207
 Transform:
   m_ObjectHideFlags: 0
@@ -712,7 +718,7 @@ SpriteRenderer:
   m_Size: {x: 32.64, y: 4.9999995}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1743541796
 Transform:

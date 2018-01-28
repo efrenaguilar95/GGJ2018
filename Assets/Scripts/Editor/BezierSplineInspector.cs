@@ -27,6 +27,12 @@ public class BezierSplineInspector : Editor {
             spline.UpdateStartAndEndColliders();
             EditorUtility.SetDirty(spline);
         }
+        if (GUILayout.Button("Fix Missing Distances"))
+        {
+            Undo.RecordObject(spline, "Fixing Distances");
+            spline.FixDistances();
+            EditorUtility.SetDirty(spline);
+        }
     }
 
     private void OnSceneGUI()
