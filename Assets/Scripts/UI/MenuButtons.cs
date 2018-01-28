@@ -7,16 +7,17 @@ using UnityEngine.Audio;
 
 public class MenuButtons : MonoBehaviour {
 
-
     GameObject primaryMenu;
     GameObject creditsScreen;
     GameObject optionsBox;
     Slider volumeSlider;
     Slider sfxVolumeSlider;
 
-    public GameObject pauseMenu;
+    GameObject pauseMenu;
     bool isPaused = false;
     public bool canPause = false; //Check if player has started the game, because they cannot pause in the main menu
+
+    public GameObject controls;
 
     public AudioMixerGroup musicAudioMixer;
     public AudioMixerGroup sfxAudioMixer;
@@ -29,6 +30,7 @@ public class MenuButtons : MonoBehaviour {
         volumeSlider = optionsBox.transform.Find("VolumeSlider").GetComponent<Slider>();
         sfxVolumeSlider = optionsBox.transform.Find("SFXVolSlider").GetComponent<Slider>();
         pauseMenu = gameObject.transform.Find("PauseMenu").gameObject;
+        controls = gameObject.transform.Find("ControlsPanel").gameObject;
         //Needed for initial volume setting
         VolumeSlideControl();
     }
@@ -45,9 +47,9 @@ public class MenuButtons : MonoBehaviour {
 
     public void OnStartClick()
     {
+        SceneManager.LoadScene(1);
         canPause = true;
         primaryMenu.SetActive(!primaryMenu.activeSelf);
-        SceneManager.LoadScene(1);
         
     }
 
@@ -70,6 +72,7 @@ public class MenuButtons : MonoBehaviour {
     public void OnOptionsClick()
     {
         optionsBox.SetActive(!optionsBox.activeSelf);
+        canPause = !canPause;
     }
 
     public void VolumeSlideControl()
@@ -92,5 +95,12 @@ public class MenuButtons : MonoBehaviour {
             Time.timeScale = 1;
             isPaused = false;
         }
+    }
+
+    public void OnControlsClick()
+    {
+        primaryMenu.SetActive(!primaryMenu.activeSelf);
+        controls.SetActive(!controls.activeSelf);
+        canPause = !canPause;
     }
 }
