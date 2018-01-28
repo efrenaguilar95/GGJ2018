@@ -8,11 +8,11 @@ public class ResultsScreen : MonoBehaviour {
 
     public float transitionDelay = 5f;
     public string nextScene;    //next level to enter
-    public FinishLine finisher; //finish line checker
     public Text resultsText;
     public StarCounter stars;   //to check how many stars are given in this level depending on completion time
     public Timer time;          //to get the time the level completed
-    
+
+    private bool winState = false;
     private float transitionTimer;
     private Animator anim;
     private bool safety = true;
@@ -24,7 +24,7 @@ public class ResultsScreen : MonoBehaviour {
 
     private void Update()
     {
-        if (finisher.GetFunState() == true && safety == true)
+        if (winState == true && safety == true)
         {
             safety = false;
             UpdateResultsText();
@@ -65,5 +65,10 @@ public class ResultsScreen : MonoBehaviour {
             resultsText.text += "You earned no stars!";
             anim.SetTrigger("ResultsScreen");
         }
+    }
+
+    public void SetWinState(bool state)
+    {
+        winState = state;
     }
 }

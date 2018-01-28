@@ -7,7 +7,6 @@ public class GameOverManager : MonoBehaviour {
 
     public float restartDelay = 5f;
     public bool failState = false;
-    public EnemySpike spike;
 
     private Animator anim;
     private float restartTimer;
@@ -20,7 +19,7 @@ public class GameOverManager : MonoBehaviour {
     private void Update()
     {
 
-        if(spike.GetFailState() == true)
+        if(failState == true)
         {
             anim.SetTrigger("GameOver");
             restartTimer += Time.deltaTime;
@@ -30,6 +29,11 @@ public class GameOverManager : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+    }
+
+    public void SetFailState(bool state)
+    {
+        failState = state;
     }
 
 }

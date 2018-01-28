@@ -4,22 +4,14 @@ using UnityEngine;
 using UnityEngine.UI; //Needed for text
 
 public class FinishLine : MonoBehaviour {
-    public Text victoryText;
-
-    private bool funState = false;
-
+    public ResultsScreen win;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         GameObject hitObj = collider.gameObject;
         if (hitObj.tag == "Player")
         {
-            funState = true;
+            win.SetWinState(true);
         }
-    }
-
-    public bool GetFunState()
-    {
-        return funState;
     }
 }
