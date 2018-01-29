@@ -187,6 +187,8 @@ public class PlayerController : MonoBehaviour
 
     private void AttemptTravel()
     {
+        if (IsCarrying())
+            return;
         // test is on start node
         switch (m_Electric)
         {
