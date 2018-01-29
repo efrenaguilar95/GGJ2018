@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
 	private PlayerController m_Character;
 	private bool m_Jump;
-
+	public GameObject canvas;
 	private void Awake()
 	{
 		m_Character = GetComponent<PlayerController>();
@@ -16,6 +16,9 @@ public class InputManager : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			canvas.SetActive(!canvas.activeSelf);
+		}
 		if (!m_Jump)
 		{
 			// Read the jump input in Update so button presses aren't missed
