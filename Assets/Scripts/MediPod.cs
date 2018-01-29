@@ -20,7 +20,7 @@ public class MediPod : MonoBehaviour
 
 				// give happiness
 				PlayerController playerControllerScript = m_Player.GetComponentInChildren<PlayerController>();
-				playerControllerScript.ChangeHappiness(10);
+				playerControllerScript.ChangeHappiness(15);
 			}
         }
     }

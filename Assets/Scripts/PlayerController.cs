@@ -187,6 +187,8 @@ public class PlayerController : MonoBehaviour
 
     private void AttemptTravel()
     {
+        if (IsCarrying())
+            return;
         // test is on start node
         switch (m_Electric)
         {
@@ -212,6 +214,7 @@ public class PlayerController : MonoBehaviour
                         m_Electric = true;
                         Debug.Log("Attempted to Travel");
                         audioSource.PlayOneShot(electrcity);
+                        ChangeHappiness(-5);
                     }
                     else
                     {
